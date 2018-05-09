@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.sinosoft.demo.OrgEntity" table="org" schema="use">
+        <id name="orgid" column="ORGID">
+            <generator class="native"></generator>
+        </id>
+        <property name="orgcode">
+            <column name="ORGCODE" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="orgname">
+            <column name="ORGNAME" sql-type="varchar(64)" length="64"/>
+        </property>
+        <property name="orgleader">
+            <column name="ORGLEADER" sql-type="varchar(32)" length="32"/>
+        </property>
+
+        <!-- 一对多关系映射
+			涉及的标签
+				set：用于映射set集合属性
+					属性：
+					  name：指定集合属性的名称
+					  table:在一对多的时候写不写都可以。
+					  		它指定的是集合元素所对应的表
+				one-to-many:用于指定当前映射配置文件所对应的实体和集合元素所对应的实体是一对多关系。
+					属性：
+					   class：指定集合元素所对应的实体类名称。
+				key：用于映射外键字段的。
+					属性：
+					   column：指定从表中的外键字段名称
+		-->
+        <set name="emps" table="emp" inverse="true">
+            <key column="ORGID"></key>
+            <one-to-many class="com.sinosoft.demo.EmpEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

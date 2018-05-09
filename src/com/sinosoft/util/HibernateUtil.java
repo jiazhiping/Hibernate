@@ -43,4 +43,12 @@ public class HibernateUtil {
         return factory.openSession();
     }
 
+
+    /**
+     * 每次都是从当前线程上获取Session
+     * @return
+     */
+    public static Session getCurrentSession(){
+        return factory.getCurrentSession();
+    }
 }

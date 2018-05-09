@@ -15,6 +15,14 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
+
+
+        <!-- 把session绑定到当前线程上 -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+
         <mapping resource="com/sinosoft/demo/TabEntity.hbm.xml"/>
+        <mapping resource="com/sinosoft/demo/OrgEntity.hbm.xml"/>
+        <mapping resource="com/sinosoft/demo/EmpEntity.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
