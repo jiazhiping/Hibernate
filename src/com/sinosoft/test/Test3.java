@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
 
+import java.util.Set;
+
 /**
  * @Title: Testhibernate
  * @Description: ${description}
@@ -45,6 +47,29 @@ public class Test3 {
         session.save(stu2);
         tx.commit();
 
+    }
 
+
+    /**
+    * @Title:
+    * @Description:
+    * @Param:
+    * @return:
+    * @Author: jiazhiping
+    * @Date: 下午 4:35 2018/5/9 0009
+    * @Modifier:
+    * @Modify Date:
+    */
+    @Test
+    public void findStudentsByGrade(){
+        Session s = HibernateUtil.openSession();
+        GradeEntity grade = (GradeEntity)s.get(GradeEntity.class, 0);
+        System.out.println(grade.getGname()+","+grade.getGdesc());
+
+        Set<StudentEntity> students = grade.getStudents();
+        for (StudentEntity student : students) {
+            System.out.println(student.getSname()+","+student.getSex());
+            
+        }
     }
 }
