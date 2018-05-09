@@ -1,7 +1,7 @@
 package com.sinosoft.test;
 
-import com.sinosoft.demo.EmpEntity;
-import com.sinosoft.demo.OrgEntity;
+import com.sinosoft.demo.GradeEntity;
+import com.sinosoft.demo.StudentEntity;
 import com.sinosoft.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,7 +20,7 @@ public class Test3 {
 
     /**
     * @Title:  多表保存
-    * @Description: 同时保存一个部门 和 部门成员
+    * @Description:
     * @Param:
     * @return:
     * @Author: jiazhiping
@@ -29,31 +29,20 @@ public class Test3 {
     * @Modify Date:
     */
     @Test
-    public void Test(){
-        EmpEntity emp = new EmpEntity();
-        emp.setEmpname("TBD");
-        emp.setEmpid(8);
-        emp.setAddress("昌平区北七家镇");
-        emp.setEmpcode("006");
-        emp.setPhone("0000000");
-        emp.setPostcode("710075");
-        emp.setSex("M");
-        emp.setWage(6745.000);
-        emp.setOrgid(9);
+    public void Testadd(){
+        GradeEntity g = new GradeEntity("Java一班", "Java软件开发一班");
+        StudentEntity stu1 = new StudentEntity("张三", "男");
+        StudentEntity stu2 = new StudentEntity("木女神", "女");
 
+        //如果希望在学生表中添加对应的班级编号，需要在班级中添加学生，建立关联关系
+        g.getStudents().add(stu1);
+        g.getStudents().add(stu2);
 
-        OrgEntity org = new OrgEntity();
-        org.setOrgid(9);
-        org.setOrgcode("006");
-        org.setOrgleader("laowang");
-        org.setOrgname("应用");
-
-        org.getEmps().add(emp);
-
-        Session s = HibernateUtil.getCurrentSession();
-        Transaction tx =s.beginTransaction();
-        s.save(emp);
-        s.save(org);
+        Session session = HibernateUtil.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        session.save(g);
+        session.save(stu1);
+        session.save(stu2);
         tx.commit();
 
 

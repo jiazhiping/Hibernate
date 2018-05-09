@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.sinosoft.demo.GradeEntity" table="grade" schema="use">
+        <id name="gid">
+            <column name="gid" sql-type="int(11)"/>
+        </id>
+        <property name="gname">
+            <column name="gname" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="gdesc">
+            <column name="gdesc" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <set name="students" table="student">
+            <key column="gid"></key>
+            <one-to-many class="com.sinosoft.demo.StudentEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

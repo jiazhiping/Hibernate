@@ -22,7 +22,7 @@
 
 
         <mapping resource="com/sinosoft/demo/TabEntity.hbm.xml"/>
-        <mapping resource="com/sinosoft/demo/OrgEntity.hbm.xml"/>
-        <mapping resource="com/sinosoft/demo/EmpEntity.hbm.xml"/>
+        <mapping resource="com/sinosoft/demo/GradeEntity.hbm.xml"/>
+        <mapping resource="com/sinosoft/demo/StudentEntity.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
